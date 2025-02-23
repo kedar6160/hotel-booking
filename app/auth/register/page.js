@@ -11,8 +11,6 @@ export default function Register() {
     e.preventDefault();
     setError(null);
 
-    console.log("🔹 Sending registration request...", form);
-
     const res = await fetch("/api/auth/register", {
       method: "POST",
       body: JSON.stringify(form),
@@ -21,12 +19,12 @@ export default function Register() {
 
     if (!res.ok) {
       const errMsg = await res.text();
-      console.log("Registration failed:", errMsg);
+      alert("Registration failed:", errMsg);
       setError(errMsg);
       return;
     }
 
-    console.log("✅ Registration successful, redirecting to login...");
+    alert("✅ Registration successful, please login to continue...");
     router.push("/auth/login");
   };
 
